@@ -10,8 +10,16 @@ exports.addProduct = async (req, res, user) => {
         product_name: req.body.dname,
         product_price: req.body.dprice,
         product_description: req.body.ddescription,
-        product_caterogy: req.body.dcategory,
+        product_category: req.body.dcategory,
     }
     const addnewProducts = await product.create(addnewProduct)
     res.send(addnewProducts);
+}
+
+exports.deleteProduct = async (req, res) => {
+    await product.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
 }
