@@ -23,3 +23,7 @@ exports.deleteProduct = async (req, res) => {
         }
     })
 }
+
+exports.updateProduct = async (req, res) => {
+    console.log(req.params.id);
+}
