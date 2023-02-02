@@ -25,5 +25,16 @@ exports.deleteProduct = async (req, res) => {
 }
 
 exports.updateProduct = async (req, res) => {
-    console.log(req.params.id);
+
+    await product.update({ 
+        product_name: req.body.productName,
+        product_price: req.body.productPrice, 
+        product_category: req.body.productCategory, 
+        product_description: req.body.productDescription, 
+    },     
+        {
+        where: {
+            id: req.params.id
+        }
+    });
 }
