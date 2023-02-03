@@ -11,6 +11,8 @@ router.put('/update/:id',controller.updateProduct)
 router.get('/category',controller.getCategory)
 router.post('/add-new-category',controller.addCategory)
 router.delete('/category/:id',controller.deleteCategory)
+router.put('/update-category/:id',controller.updateCategory)
+
 
 
 

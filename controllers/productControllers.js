@@ -26,7 +26,6 @@ exports.deleteProduct = async (req, res) => {
 }
 
 exports.updateProduct = async (req, res) => {
-
     await product.update({ 
         product_name: req.body.productName,
         product_price: req.body.productPrice, 
@@ -62,5 +61,18 @@ exports.deleteCategory = async (req, res) => {
             id: req.params.id
         }
     })
+}
+
+exports.updateCategory = async (req, res) => {
+    await category.update({ 
+        product_category: req.body.categoryName,
+        category_description: req.body.categoryDescription, 
+    },     
+        {
+        where: {
+            id: req.params.id
+        }
+    });
+    
 }
 
