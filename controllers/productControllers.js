@@ -1,4 +1,5 @@
 const product = require('../models/product').model;
+const category = require('../models/category').model;
 
 exports.getProduct = async (req, res) => {
     const productList = await product.findAll();
@@ -38,3 +39,28 @@ exports.updateProduct = async (req, res) => {
         }
     });
 }
+
+//Get the list of product categories
+
+exports.getCategory = async (req, res) => {
+    const categorytList = await category.findAll();
+    res.send(categorytList); 
+}
+
+exports.addCategory = async (req, res, user) => {
+    const addnewCategory = {
+        product_category: req.body.cname,
+        category_description: req.body.cdescription,
+    }
+    const addnewCategories = await category.create(addnewCategory)
+    res.send(addnewCategories);
+}
+
+exports.deleteCategory = async (req, res) => {
+    await category.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+}
+
