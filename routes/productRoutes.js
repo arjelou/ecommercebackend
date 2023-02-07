@@ -13,6 +13,12 @@ router.post('/add-new-category',controller.addCategory)
 router.delete('/category/:id',controller.deleteCategory)
 router.put('/update-category/:id',controller.updateCategory)
 
+// SIGNUP ROUTES
+router.post('/signup',controller.signupUser)
+
+//LOGIN ROUTES
+router.post('/login',controller.loginUser)
+
 
 
 

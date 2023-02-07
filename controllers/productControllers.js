@@ -1,5 +1,6 @@
 const product = require('../models/product').model;
 const category = require('../models/category').model;
+const usersignup = require('../models/user').model;
 
 exports.getProduct = async (req, res) => {
     const productList = await product.findAll();
@@ -76,3 +77,50 @@ exports.updateCategory = async (req, res) => {
     
 }
 
+// USERS SIGNUP
+exports.signupUser = async (req, res, user) => {
+    const addnewUser = {
+        email: req.body.email,
+        company: req.body.company,
+        total_employee: req.body.totalEmployee,
+        zipcode: req.body.zipcode,
+        password: req.body.password,
+        confirmpassword: req.body.confirmpassword,
+    }
+    const addnewUserSignup = await usersignup.create(addnewUser)
+    res.send(addnewUserSignup);
+}
+
+//LOGIN USERS
+exports.loginUser = async (req, res) => {
+
+    // const userValidations = await usersignup.findAll({
+    //     whre:{
+    //         email: req.body.email,
+    //         password: req.body.password
+    //     },
+    //     if (userValidations) {
+            
+    //     }
+    // });
+
+
+ const {email, password} = req.body;
+ 
+ try {
+    const userEmail = await usersignup.findAll({
+        where:{
+        email: email,
+        password: password
+    }
+    });
+    if (email === email && password === password){
+        res.send(userEmail.data)
+    };
+
+ }
+ catch(err) {
+    res.send(err.message);
+ }
+
+}
