@@ -93,34 +93,18 @@ exports.signupUser = async (req, res, user) => {
 
 //LOGIN USERS
 exports.loginUser = async (req, res) => {
+    const project = await usersignup.findOne({ 
+        where: { 
+            email: req.body.email,
+            password: req.body.password
+        }
+     });
 
-    // const userValidations = await usersignup.findAll({
-    //     whre:{
-    //         email: req.body.email,
-    //         password: req.body.password
-    //     },
-    //     if (userValidations) {
-            
-    //     }
-    // });
-
-
- const {email, password} = req.body;
- 
- try {
-    const userEmail = await usersignup.findAll({
-        where:{
-        email: email,
-        password: password
+    if (project === null) {
+      res.send(project);
+    } else {
+      console.log(project instanceof usersignup); // true
+      console.log(project.email); // 'My Title'
+      res.send(project);
     }
-    });
-    if (email === email && password === password){
-        res.send(userEmail.data)
-    };
-
- }
- catch(err) {
-    res.send(err.message);
- }
-
 }
