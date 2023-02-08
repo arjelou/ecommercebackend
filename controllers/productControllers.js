@@ -79,88 +79,90 @@ exports.updateCategory = async (req, res) => {
 }
 
 // USERS SIGNUP
-exports.signupUser = async (req, res, user) => {
-    const addnewUser = {
-        email,
-        company,
-        totalEmployee,
-        zipcode,
-        password,
-        confirmpassword } = req.body;
-
-        bcrypt.hash(password && confirmpassword, 5).then((ha) =>{
-            usersignup.create({
-                email: email,
-                company: company,
-                total_employee: totalEmployee,
-                zipcode: zipcode,
-                password: ha,
-                confirmpassword: ha
-            }).then(() =>{
-                res.send(usersignup);
-            }).catch((err) =>{
-                res.status(400).json({error: err});
-            })
-        })
-}
-
-//NOT HASHING THE PASSWORD
 // exports.signupUser = async (req, res, user) => {
 //     const addnewUser = {
-//         email: req.body.email,
-//         company: req.body.company,
-//         total_employee: req.body.totalEmployee,
-//         zipcode: req.body.zipcode,
-//         password: req.body.password,
-//         confirmpassword: req.body.confirmpassword,
-//     }
-//     const addnewUserSignup = await usersignup.create(addnewUser)
-//     res.send(addnewUserSignup);
+//         email,
+//         company,
+//         totalEmployee,
+//         zipcode,
+//         password,
+//         confirmpassword } = req.body;
+
+//         bcrypt.hash(password && confirmpassword, 5).then((ha) =>{
+//             usersignup.create({
+//                 email: email,
+//                 company: company,
+//                 total_employee: totalEmployee,
+//                 zipcode: zipcode,
+//                 password: ha,
+//                 confirmpassword: ha
+//             }).then(() =>{
+//                 res.send(usersignup);
+//             }).catch((err) =>{
+//                 res.status(400).json({error: err});
+//             })
+//         })
 // }
 
-exports.loginUser = async (req, res) => {
- 
-    const {email,password} = req.body;
-
-    const user = await usersignup.findOne({ 
-        where: { 
-            email: email,
-        } });
-
-    if (!user) {
-        console.log("Invalid email");
-        return true;
-    }else{
-        console.log("Correct email");
+// NOT HASHING THE PASSWORD
+exports.signupUser = async (req, res, user) => {
+    const addnewUser = {
+        email: req.body.email,
+        company: req.body.company,
+        total_employee: req.body.totalEmployee,
+        zipcode: req.body.zipcode,
+        password: req.body.password,
+        confirmpassword: req.body.confirmpassword,
     }
-    
-    const dbPassword = user.password;
-    bcrypt.compare(password,dbPassword).then((match) => {
-        if (!match){
-            console.log("invalid password");
-            return true;
-        }else{
-            console.log("correct password");
-        }
-    })
+    const addnewUserSignup = await usersignup.create(addnewUser)
+    res.send(addnewUserSignup);
 }
 
+// exports.loginUser = async (req, res) => {
+ 
+//     const {email,password} = req.body;
+
+//     const user = await usersignup.findOne({ 
+//         where: { 
+//             email: email,
+//         } });
+
+//     if (!user) {
+//         console.log("Invalid email");
+//          res.send(user);
+//         return true;
+//     }else{
+//         console.log("Correct email");
+//         res.send(user);
+//     }
+
+//     const dbPassword = user.password;
+//     bcrypt.compare(password,dbPassword).then((match) => {
+//         if (!match){
+//             console.log("invalid password");
+//             res.send(user.dbPassword);
+//             console.log(dbPassword);
+//         }else{
+//             console.log("correct password")
+//         }
+//     })
+// }
 
 
 //LOGIN USERS WITHOUT HASHING
-// exports.loginUser = async (req, res) => {
-//     const project = await usersignup.findOne({ 
-//         where: { 
-//             email: req.body.email,
-//             password: req.body.password
-//         }
-//      });
+exports.loginUser = async (req, res) => {
+    const project = await usersignup.findOne({ 
+        where: { 
+            email: req.body.email,
+            password: req.body.password
+        }
+     });
 
-//     if (project === null) {
-//       res.send(project);
-//     } else {
-//       console.log(project instanceof usersignup); // true
-//       console.log(project.email); // 'My Title'
-//       res.send(project);
-//     }
-// }
+    if (project === null) {
+      res.send(project);
+    } else {
+      console.log(project instanceof usersignup); // true
+      console.log(project.email); // 'My Title'
+      res.send(project);
+    }
+}
