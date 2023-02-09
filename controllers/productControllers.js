@@ -157,12 +157,5 @@ exports.loginUser = async (req, res) => {
             password: req.body.password
         }
      });
-
-    if (project === null) {
-      res.send(project);
-    } else {
-      console.log(project instanceof usersignup); // true
-      console.log(project.email); // 'My Title'
-      res.send(project);
-    }
+    project === null ?  res.send(project) : res.send(project.email) 
 }
