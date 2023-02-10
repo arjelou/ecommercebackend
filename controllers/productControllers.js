@@ -1,7 +1,8 @@
 const product = require('../models/product').model;
 const category = require('../models/category').model;
 const usersignup = require('../models/user').model;
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
+const { createTokens } = require('../jwt')
 
 exports.getProduct = async (req, res) => {
     const productList = await product.findAll();
@@ -151,11 +152,26 @@ exports.signupUser = async (req, res, user) => {
 
 //LOGIN USERS WITHOUT HASHING
 exports.loginUser = async (req, res) => {
-    const project = await usersignup.findOne({ 
+    const validateUsers = await usersignup.findOne({ 
         where: { 
             email: req.body.email,
             password: req.body.password
         }
      });
-    project === null ?  res.send(project) : res.send(project.email) 
+    //  validateUsers === null ?  res.send(validateUsers) : res.send(validateUsers.email)
+    
+    if(validateUsers === null) {
+        res.send(validateUsers)
+
+    }else {
+        const accessToken = createTokens(validateUsers)
+
+        console.log(accessToken);
+
+        res.cookie('access-tokens',accessToken,{
+            maxAge: 60*60*24*30*1000
+        })
+
+        res.send(validateUsers.email)
+    }
 }
