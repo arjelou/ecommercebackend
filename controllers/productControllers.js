@@ -1,8 +1,8 @@
 const product = require('../models/product').model;
 const category = require('../models/category').model;
 const usersignup = require('../models/user').model;
+const quotationUsers = require('../models/quotation').model;
 // const bcrypt = require('bcrypt');
-const { createTokens } = require('../jwt')
 
 exports.getProduct = async (req, res) => {
     const productList = await product.findAll();
@@ -158,20 +158,26 @@ exports.loginUser = async (req, res) => {
             password: req.body.password
         }
      });
-    //  validateUsers === null ?  res.send(validateUsers) : res.send(validateUsers.email)
-    
-    if(validateUsers === null) {
-        res.send(validateUsers)
+     validateUsers === null ?  res.send(validateUsers) : res.send(validateUsers)
+  
+}
 
-    }else {
-        const accessToken = createTokens(validateUsers)
+//QUOTATION USERS
 
-        console.log(accessToken);
+//request inquirer
+exports.quotationUser = async (req, res) => {
+    const {design,quantity,description,userID} = req.body;
+    const requestQuatation = await quotationUsers.create({
+        userId: userID,
+        design: design,
+        quantity: quantity,
+        description: description
+    })
+    res.send(requestQuatation);
+}
 
-        res.cookie('access-tokens',accessToken,{
-            maxAge: 60*60*24*30*1000
-        })
-
-        res.send(validateUsers.email)
-    }
+//gett all notifications
+exports.getAllNotification = async (req, res) => {
+    const notification = await quotationUsers.findAll();
+    res.send(notification); 
 }

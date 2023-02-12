@@ -19,6 +19,12 @@ router.post('/signup',controller.signupUser)
 //LOGIN ROUTES
 router.post('/login',controller.loginUser)
 
+//QUOTATION ROUTES
+router.post('/quotation',controller.quotationUser)
+router.get('/allnotification',controller.getAllNotification)
+
+
+
 
 
 
