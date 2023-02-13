@@ -178,6 +178,10 @@ exports.quotationUser = async (req, res) => {
 
 //gett all notifications
 exports.getAllNotification = async (req, res) => {
-    const notification = await quotationUsers.findAll();
+    const notification = await quotationUsers.findAll({
+        where:{
+            userId: req.query.id
+        }
+    });
     res.send(notification); 
 }
