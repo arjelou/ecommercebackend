@@ -81,6 +81,7 @@ exports.updateCategory = async (req, res) => {
 // NOT HASHING THE PASSWORD
 exports.signupUser = async (req, res, user) => {
     const addnewUser = {
+        fullname: req.body.fullname,
         email: req.body.email,
         company: req.body.company,
         total_employee: req.body.totalEmployee,

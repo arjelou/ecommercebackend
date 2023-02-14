@@ -9,6 +9,9 @@ const user = instance.sequelize.define('users', {
     primaryKey: true,
     type: DataTypes.INTEGER
   },
+  fullname: {
+    type: DataTypes.STRING
+  },
   email: {
     type: DataTypes.STRING
   },
