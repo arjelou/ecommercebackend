@@ -2,7 +2,6 @@ const product = require('../models/product').model;
 const category = require('../models/category').model;
 const usersignup = require('../models/user').model;
 const quotationUsers = require('../models/quotation').model;
-// const bcrypt = require('bcrypt');
 
 exports.getProduct = async (req, res) => {
     const productList = await product.findAll();
@@ -79,32 +78,6 @@ exports.updateCategory = async (req, res) => {
     
 }
 
-// USERS SIGNUP
-// exports.signupUser = async (req, res, user) => {
-//     const addnewUser = {
-//         email,
-//         company,
-//         totalEmployee,
-//         zipcode,
-//         password,
-//         confirmpassword } = req.body;
-
-//         bcrypt.hash(password && confirmpassword, 5).then((ha) =>{
-//             usersignup.create({
-//                 email: email,
-//                 company: company,
-//                 total_employee: totalEmployee,
-//                 zipcode: zipcode,
-//                 password: ha,
-//                 confirmpassword: ha
-//             }).then(() =>{
-//                 res.send(usersignup);
-//             }).catch((err) =>{
-//                 res.status(400).json({error: err});
-//             })
-//         })
-// }
-
 // NOT HASHING THE PASSWORD
 exports.signupUser = async (req, res, user) => {
     const addnewUser = {
@@ -118,37 +91,6 @@ exports.signupUser = async (req, res, user) => {
     const addnewUserSignup = await usersignup.create(addnewUser)
     res.send(addnewUserSignup);
 }
-
-// exports.loginUser = async (req, res) => {
- 
-//     const {email,password} = req.body;
-
-//     const user = await usersignup.findOne({ 
-//         where: { 
-//             email: email,
-//         } });
-
-//     if (!user) {
-//         console.log("Invalid email");
-//          res.send(user);
-//         return true;
-//     }else{
-//         console.log("Correct email");
-//         res.send(user);
-//     }
-
-//     const dbPassword = user.password;
-//     bcrypt.compare(password,dbPassword).then((match) => {
-//         if (!match){
-//             console.log("invalid password");
-//             res.send(user.dbPassword);
-//             console.log(dbPassword);
-//         }else{
-//             console.log("correct password")
-//         }
-//     })
-// }
-
 
 //LOGIN USERS WITHOUT HASHING
 exports.loginUser = async (req, res) => {
@@ -178,7 +120,10 @@ exports.quotationUser = async (req, res) => {
 
 //gett all notifications
 exports.getAllNotification = async (req, res) => {
-    const notification = await quotationUsers.findAll({
+    const notification = await quotationUsers.findAll(
+        {
+            userId: req.params.userId,
+        },{
         where:{
             userId: req.query.id
         }

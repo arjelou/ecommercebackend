@@ -25,9 +25,4 @@ router.get('/allnotification',controller.getAllNotification)
 
 
 
-
-
-
-
-
 module.exports = router;
