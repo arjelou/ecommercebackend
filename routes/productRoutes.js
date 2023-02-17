@@ -23,6 +23,9 @@ router.post('/login',controller.loginUser)
 router.post('/quotation',controller.quotationUser)
 router.get('/allnotification',controller.getAllNotification)
 
+//GET ALL CUSTOMER ROUTES
+router.get('/customer',controller.listOfCustomers)
+
 
 
 module.exports = router;

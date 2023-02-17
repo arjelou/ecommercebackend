@@ -2,10 +2,16 @@ const product = require('../models/product').model;
 const category = require('../models/category').model;
 const usersignup = require('../models/user').model;
 const quotationUsers = require('../models/quotation').model;
+const user = require('../models/user').model;
 
 exports.getProduct = async (req, res) => {
     const productList = await product.findAll();
     res.send(productList); 
+}
+//GET ALL CUSTOMERS
+exports.listOfCustomers = async (req, res) => {
+    const listOfCustomers = await user.findAll();
+    res.send(listOfCustomers);
 }
 
 exports.addProduct = async (req, res, user) => {
