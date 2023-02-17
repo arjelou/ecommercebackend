@@ -121,13 +121,18 @@ exports.quotationUser = async (req, res) => {
 
 //gett all notifications
 exports.getAllNotification = async (req, res) => {
-    const notification = await quotationUsers.findAll(
-        {
-            userId: req.params.userId,
-        },{
-        where:{
-            userId: req.query.id
-        }
-    });
+
+    let notification;
+    if (req.query.id) {
+        notification = await quotationUsers.findAll(
+            {
+             where:{
+                 userId: req.query.id
+             }
+         });
+    }else {
+        notification = await quotationUsers.findAll();
+    }
+   
     res.send(notification); 
 }
