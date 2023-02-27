@@ -3,7 +3,7 @@ const app = express();
 const productRoutes = require('./routes/productRoutes');
 const cors = require('cors');
 
-require('dotenv').config()
+require('dotenv').config({path: "./vars/.env"})
 
 // app.use(cors({origin: ['http://localhost:3000']}))
 app.use(cors())
