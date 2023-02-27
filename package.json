@@ -4,7 +4,7 @@
   "description": "KodeGo capstone projects with MVC approach",
   "main": "index.js",
   "scripts": {
-    "start": "app.js"
+    "start": "node app.js"
   },
   "author": "arjelou.jelou@gmail.com",
   "license": "ISC",
