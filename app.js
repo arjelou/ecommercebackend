@@ -16,4 +16,4 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', productRoutes)
 app.use('/addnew', productRoutes)
 
-app.listen(process.env.PORT);
+app.listen(process.env.MYSQLPORT);
