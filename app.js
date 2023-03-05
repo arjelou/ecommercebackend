@@ -3,7 +3,7 @@ const app = express();
 const productRoutes = require('./routes/productRoutes');
 const cors = require('cors');
 
-require('dotenv').config({path: "./vars/.env"})
+require('dotenv').config({path: "./.env"})
 
 app.use(cors({origin: ['http://containers-us-west-74.railway.app:5611']}))
 // app.use(cors({origin: ['http://localhost:3000']}))
@@ -18,4 +18,4 @@ app.use('/', productRoutes)
 app.use('/addnew', productRoutes)
 
 // app.listen(process.env.MYSQLPORT || PORT);
-app.listen(5611);
+app.listen(process.env.MYSQLPORT || PORT, 5611);
