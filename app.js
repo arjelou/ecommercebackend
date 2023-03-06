@@ -18,4 +18,4 @@ app.use('/', productRoutes)
 app.use('/addnew', productRoutes)
 
 // app.listen(process.env.MYSQLPORT || PORT);
-app.listen(process.env.MYSQLPORT || PORT, 5611);
+app.listen(process.env.MYSQLPORT || 3306);
