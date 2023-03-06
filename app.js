@@ -5,7 +5,7 @@ const cors = require('cors');
 
 require('dotenv').config({path: "./.env"})
 
-app.use(cors({origin: ['https://containers-us-west-74.railway.app:5611/']}))
+app.use(cors({origin: ['https://tame-gray-tortoise-kit.cyclic.app/']}))
 // app.use(cors({origin: ['http://localhost:3000']}))
 // app.use(cors('*'))
 
