@@ -5,8 +5,9 @@ const quotationUsers = require('../models/quotation').model;
 const user = require('../models/user').model;
 
 exports.getProduct = async (req, res) => {
-    const productList = await product.findAll();
-    res.send(productList); 
+    // const productList = await product.findAll();
+    res.send('Welcom to the homepage')
+    // res.send(productList); 
 }
 //GET ALL CUSTOMERS
 exports.listOfCustomers = async (req, res) => {
