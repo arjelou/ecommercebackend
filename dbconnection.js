@@ -16,12 +16,12 @@ const sequelize = new Sequelize(process.env.MYSQLDATABASE,process.env.MYSQLUSER,
 })
 
 
-// sequelize.authenticate();
-try {
-    sequelize.authenticate();
-}catch(e){
-    console.log("Unable to authenticate");
-    console.log(e);
-}
+sequelize.authenticate();
+// try {
+//     sequelize.authenticate();
+// }catch(e){
+//     console.log("Unable to authenticate");
+//     console.log(e);
+// }
 
 exports.sequelize = sequelize;

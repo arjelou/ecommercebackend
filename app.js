@@ -14,8 +14,10 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/', productRoutes)
-app.use('/addnew', productRoutes)
+app.use('/', function(req, res) {
+    res.send('WELCOME TO MY API, just user /product');
+})
+// app.use('/addnew', productRoutes)
 
 // app.listen(process.env.MYSQLPORT || PORT);
 app.listen(process.env.MYSQLPORT);
