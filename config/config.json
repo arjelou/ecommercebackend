@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": "Rckc5bDA5MJk7QE0n7XD",
-    "database": "railway",
-    "host": "containers-us-west-74.railway.app",
+    "password": null,
+    "database": "ecommerce",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
